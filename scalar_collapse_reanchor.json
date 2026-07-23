@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "script": "scalar_collapse_reanchor.py",
+    "purpose": "v1.2 re-anchor of the Sec. IV.B scalar-collapse claim at delta_star = 3 pi/5",
+    "paper_reported_value": "3.1e-16"
+  },
+  "negative_control_delta_zero": {
+    "delta": 0.0,
+    "abs_eigenvalue_difference": 1.6180339887498951,
+    "pass_no_accidental_collapse": true
+  },
+  "algebraic_identity_R_tau_exp_i_delta_star_eq_R_1": {
+    "delta_star": 1.8849555921538759,
+    "R_tau_times_exp_i_delta_star_re_im": [
+      -0.8090169943749476,
+      -0.587785252292473
+    ],
+    "R_1_re_im": [
+      -0.8090169943749473,
+      -0.5877852522924732
+    ],
+    "abs_diff": 3.1401849173675503e-16,
+    "pass": true
+  },
+  "theta_arg_R1": -2.5132741228718345,
+  "collapse_deviation": {
+    "delta_star": 1.8849555921538759,
+    "value": 3.1401849173675503e-16,
+    "rounded_2sig": 3.1e-16,
+    "matches_paper_3p1e-16": true
+  }
+}

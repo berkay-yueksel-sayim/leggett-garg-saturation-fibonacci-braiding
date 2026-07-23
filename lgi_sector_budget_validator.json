@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "script": "lgi_sector_budget_validator.py",
+    "seed": 20260723,
+    "nsamp": 400000,
+    "delta_over_pi": 0.6083333333333333,
+    "note": "Seeded random-search validation of the braid-budget statement at the weakest nonsingular sector; not a landscape sweep."
+  },
+  "best_K3_random": {
+    "12": 1.0746853187604548,
+    "24": 1.1479558626282305
+  },
+  "deposited_L9_envelope_at_sector": 1.0507388615030657,
+  "positive_control": {
+    "delta0_L24": 1.499963509718027,
+    "deposited_delta0_L24": 1.498700462823413,
+    "deposited_series_max": 1.4999635097180295,
+    "class_match": true
+  }
+}

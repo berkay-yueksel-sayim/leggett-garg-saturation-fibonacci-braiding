@@ -1,0 +1,110 @@
+{
+  "meta": {
+    "script": "k3_reanchor.py",
+    "purpose": "v1.2 re-anchor: re-derive the true L=11 K3-argmax word from lgi_fibonacci.py's own generators",
+    "route_i": "incremental engine-faithful enumeration (matches best_K3_exhaustive in lgi_fibonacci.py)",
+    "route_ii": "meet-in-the-middle, L=11=5+6, algorithmically independent of route_i",
+    "route_mismatch_K3": 2.220446049250313e-16,
+    "n_words_tied_at_max_L11": 352
+  },
+  "positive_controls": {
+    "unitarity_max_err": {
+      "value": 1.4724165895155184e-16,
+      "pass": true
+    },
+    "yang_baxter_max_err": {
+      "value": 2.355138688025663e-16,
+      "pass": true
+    },
+    "s1s2_cubed_scalar_max_err": {
+      "value": 2.0191421170303795e-16,
+      "pass": true
+    },
+    "C(U=I)==1_and_K3(I)==1": {
+      "C_of_I": 1.0,
+      "K3_of_I": 1.0,
+      "pass": true
+    }
+  },
+  "archive_cross_check_L1_to_10": {
+    "L=1": {
+      "route_i_K3": 1.0,
+      "archived_K3": 1.0,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=2": {
+      "route_i_K3": 1.0,
+      "archived_K3": 1.0,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=3": {
+      "route_i_K3": 1.2917960675006301,
+      "archived_K3": 1.2917960675006301,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=4": {
+      "route_i_K3": 1.4032522475023121,
+      "archived_K3": 1.4032522475023121,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=5": {
+      "route_i_K3": 1.2917960675006306,
+      "archived_K3": 1.2917960675006306,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=6": {
+      "route_i_K3": 1.4774409873222936,
+      "archived_K3": 1.4774409873222936,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=7": {
+      "route_i_K3": 1.4339623071103071,
+      "archived_K3": 1.4339623071103071,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=8": {
+      "route_i_K3": 1.477440987322294,
+      "archived_K3": 1.477440987322294,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=9": {
+      "route_i_K3": 1.499761961190083,
+      "archived_K3": 1.499761961190083,
+      "diff": 0.0,
+      "pass": true
+    },
+    "L=10": {
+      "route_i_K3": 1.4978338072668032,
+      "archived_K3": 1.4978338072668032,
+      "diff": 0.0,
+      "pass": true
+    }
+  },
+  "route_i_L11": {
+    "K3": 1.4997619611900839,
+    "word": "s1 s2 s2 S1 S1 S1 s2 s2 S1 s2 s1",
+    "n_letters": 11,
+    "sigma_notation": "\\sigma_{1}\\sigma_{2}^{2}\\sigma_{1}^{-3}\\sigma_{2}^{2}\\sigma_{1}^{-1}\\sigma_{2}\\sigma_{1}"
+  },
+  "route_ii_L11": {
+    "K3": 1.499761961190084,
+    "word": "s2 S1 s2 s2 s2 S1 s2 s1 S2 S1 s2",
+    "n_letters": 11,
+    "sigma_notation": "\\sigma_{2}\\sigma_{1}^{-1}\\sigma_{2}^{3}\\sigma_{1}^{-1}\\sigma_{2}\\sigma_{1}\\sigma_{2}^{-1}\\sigma_{1}^{-1}\\sigma_{2}"
+  },
+  "archived_lgi_results_L11": {
+    "K3": 1.4997619611900839,
+    "CB": 0.49771405255657286,
+    "CB2": -0.5043338560769381,
+    "word": "s1 s2 s2 S1 S1 S1 s2 s2 S1 s2 s1",
+    "n_words": 4194304
+  }
+}
