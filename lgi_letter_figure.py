@@ -9,9 +9,9 @@ Output: lgi_letter_figure.png
 
   Panel A  best K3 versus braid length L for Fibonacci and Ising.
            Horizontal markers at K3 = 1 (macrorealism) and 3/2 (Lueders).
-  Panel B  K3(delta) sector scan for Fibonacci, with the scalar-singularity
-           point delta = 3 pi / 5 marked, and the dominant Fourier period
-           2 pi / 3 annotated (v1.2 correction; fixed words are 2 pi-periodic).
+  Panel B  K3(delta) deformation scan for Fibonacci, with the
+           scalar-singularity point delta = 3 pi / 5 marked. The Fourier-
+           period annotation of earlier versions is withdrawn.
 """
 import json
 import os
@@ -53,8 +53,6 @@ isi_random_K3 = [ISI['random_convergence'][str(L)] for L in isi_random_L]
 
 delta_over_pi = np.array(EXT['period_scan']['delta_over_pi'])
 K3_sweep = np.array(EXT['period_scan']['K3'])
-period_pi = EXT['period_scan']['period_pi']
-dominant_k = EXT['period_scan']['dominant_k']
 
 
 # ---------- plot ---------------------------------------------------------------
@@ -121,21 +119,20 @@ axA.legend(loc='center right', fontsize=7.5, framealpha=0.95,
 axA.set_title('(a) Universality split', fontsize=9, loc='left')
 
 
-# --- Panel B:  K3(delta) sector scan, Fibonacci, dominant period 2 pi / 3 ---
+# --- Panel B:  K3(delta) deformation scan, Fibonacci ---
 axB = axes[1]
 axB.axhline(1.0, color='gray', linestyle=':', linewidth=0.7, zorder=1)
 axB.axhline(1.5, color='gray', linestyle=':', linewidth=0.7, zorder=1)
 
 # the scalar-singularity point delta = 3 pi / 5  =  0.6 pi
 axB.axvline(0.6, color='#3366cc', linestyle='--', linewidth=0.7, zorder=2)
-# label sits high on the dashed line so the period box (bottom-left) cannot
-# overlap it (v1.2: previously at y=1.04, partially hidden behind the box)
+# label sits high on the dashed line, clear of the curve
 axB.text(0.62, 1.53, r'scalar gen.  $\delta = 3\pi/5$',
          fontsize=7.5, color='#3366cc', ha='left', va='top')
 
 axB.plot(delta_over_pi, K3_sweep, '-', linewidth=1.0, color='black', zorder=4)
 
-axB.set_xlabel(r'sector phase  $\delta / \pi$')
+axB.set_xlabel(r'deformation parameter  $\delta / \pi$')
 axB.set_ylabel(r'best $K_3$  (exhaustive $L \leq 9$)')
 axB.set_xlim(0, 2)
 axB.set_ylim(0.95, 1.56)
@@ -144,28 +141,11 @@ axB.xaxis.set_minor_locator(MultipleLocator(0.1))
 axB.yaxis.set_major_locator(MultipleLocator(0.1))
 axB.yaxis.set_minor_locator(MultipleLocator(0.05))
 
-# v1.2 correction: the deposited period-scan reproducer implements the
-# cumulative <=L envelope definition of the letter and finds k=3 (period
-# 2 pi / 3) as the dominant envelope harmonic (see the "Correction to v1.0"
-# paragraph). Individual fixed-word K3 traces are generically only
-# 2 pi-periodic; the annotation states both facts.
-period_txt = (
-    'dominant period\n'
-    '$=2\\pi/3$  ($k{=}3$)\n'
-    'fixed words: $2\\pi$-periodic\n'
-    'Z$_5$ $2\\pi/5$: not dominant'
-)
-# bottom-left as in v1.0/v1.1, but wrapped to 4 narrow lines so the box ends
-# left of the delta/pi = 0.6 dashed line and dip (no curve/label overlap)
-axB.text(0.03, 0.05, period_txt, transform=axB.transAxes, fontsize=7.0,
-         ha='left', va='bottom',
-         bbox=dict(facecolor='white', edgecolor='black', linewidth=0.5,
-                   boxstyle='round,pad=0.3'))
-axB.set_title('(b) Sector dependence (Fibonacci)', fontsize=9, loc='left')
+axB.set_title('(b) Deformation dependence (Fibonacci)', fontsize=9, loc='left')
 
 
 outpath = os.path.join(HERE, 'lgi_letter_figure.png')
 fig.savefig(outpath, dpi=300, bbox_inches='tight')
 print(f"-> {outpath}")
 print(f"   panel A : Fibonacci vs Ising K3(L)")
-print("   panel B : Fibonacci K3(delta), dominant period 2 pi / 3 (v1.2 corrected annotation)")
+print("   panel B : Fibonacci K3(delta), scalar singularity marked")

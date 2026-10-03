@@ -1,0 +1,99 @@
+{
+  "description": "Braid relation and mirror symmetry of the deformed Fibonacci generators (Secs. II B, III D of the letter).",
+  "norm": "Frobenius",
+  "deterministic": "no random numbers",
+  "positive_control_delta0": {
+    "exact": 3.5975337699988626e-16,
+    "up_to_phase": 3.8056527931213084e-16
+  },
+  "grid": {
+    "n": 240,
+    "tolerance": 1e-12,
+    "exact_zero_k": [
+      0,
+      72,
+      144
+    ],
+    "exact_zero_delta_over_pi": [
+      0.0,
+      0.6,
+      1.2
+    ],
+    "exact_at_zeros": [
+      3.5975337699988626e-16,
+      5.024744158353892e-16,
+      6.710077619525268e-16
+    ],
+    "n_rest": 237,
+    "rest_up_to_phase_min": 0.029098037355025776,
+    "rest_up_to_phase_max": 1.1737436474568543,
+    "rest_exact_min": 0.029098037355025776
+  },
+  "fine_scan": {
+    "n": 200000,
+    "local_minima_exact": [
+      {
+        "delta_over_pi": 0.0,
+        "value": 3.5975337699988626e-16
+      },
+      {
+        "delta_over_pi": 0.6,
+        "value": 5.024744158353892e-16
+      },
+      {
+        "delta_over_pi": 1.2,
+        "value": 6.710077619525268e-16
+      }
+    ],
+    "local_minima_up_to_phase": [
+      {
+        "delta_over_pi": 0.0,
+        "value": 3.8056527931213084e-16
+      },
+      {
+        "delta_over_pi": 0.6,
+        "value": 4.963039016037215e-16
+      },
+      {
+        "delta_over_pi": 1.2,
+        "value": 6.709504175569402e-16
+      }
+    ]
+  },
+  "scalar_point": {
+    "delta_over_pi": 0.6,
+    "c": [
+      -0.8090169943749473,
+      -0.5877852522924732
+    ],
+    "dev_sigma1": 3.1401849173675503e-16,
+    "dev_sigma2": 3.4189921100267873e-16
+  },
+  "conjugate_point": {
+    "delta_over_pi": 1.2,
+    "arg_lambda_over_pi": 0.4,
+    "residual_sigma1": 5.768888059150692e-16,
+    "residual_sigma2": 8.643507447816752e-16,
+    "negative_control": {
+      "delta_over_pi": 1.2083333333333333,
+      "residual_sigma1": 0.018511880076638558,
+      "residual_sigma2": 0.018511880076638423
+    }
+  },
+  "envelope_mirror": {
+    "source": "lgi_period_and_purestate_results.json: period_scan.K3",
+    "axis_3pi_over_5": 6.661338147750939e-15,
+    "axis_8pi_over_5": 6.661338147750939e-15,
+    "negative_control_axis_pi_over_2": 0.49956983578584047,
+    "K3_at_0": 1.499761961190083,
+    "K3_at_6pi_over_5": 1.4997619611900803,
+    "K3_at_0p5917pi": 1.0507388615030695,
+    "K3_at_0p6083pi": 1.0507388615030657
+  },
+  "word_level_mirror": {
+    "n_words": 340,
+    "lengths": "1..4",
+    "n_delta": 240,
+    "max_abs_dev": 2.4868995751603507e-14
+  }
+}

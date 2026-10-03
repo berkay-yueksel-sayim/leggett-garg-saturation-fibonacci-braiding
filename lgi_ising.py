@@ -21,8 +21,15 @@ Phase-deformation parameter delta (algebraic generalization, analogous to
 the Fibonacci case): R_psi -> R_psi * exp(i delta). delta = 0 is the standard
 Ising model.
 """
+import os
 import numpy as np
 import json
+
+# Result files are resolved relative to this script, not to the current
+# working directory: a reviewer who runs the script from elsewhere would
+# otherwise compare the deposited file against itself.
+_HIER = os.path.dirname(os.path.abspath(__file__))
+
 
 np.random.seed(20260525)
 
@@ -119,7 +126,7 @@ for L in range(12, 41, 2):
           f"distance to 1.5 = {1.5 - conv[L]:.6f}")
 
 # ----- Sector sweep (delta) ---------------------------------------------------
-print("\n=== Sector sweep (Ising): best K3(delta), exhaustive L<=9 ===")
+print("\n=== Sector sweep (Ising): best K3(delta), all words of exact length L=9 ===")
 deltas = np.linspace(0, 2 * np.pi, 49)
 sector = []
 for d in deltas:
@@ -148,6 +155,6 @@ results = dict(
                       K3=list(map(float, sector)),
                       spread=float(sector.max() - sector.min())),
 )
-with open('lgi_ising_results.json', 'w') as f:
+with open(os.path.join(_HIER, 'lgi_ising_results.json'), 'w') as f:
     json.dump(results, f, indent=2)
 print("\n-> lgi_ising_results.json written")

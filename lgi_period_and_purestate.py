@@ -25,11 +25,24 @@ cumulative <=L definition of the text. Expected results (letter):
 Part (2), the pure-state robustness check at the L=11 optimum, is
 unchanged from the original deposit script.
 
+The Fourier fields of the result file (dominant_k, period_pi,
+top_harmonics, k3_over_k6_ratio) and exact_length_control are kept so
+that v1.0-v1.2 remain reproducible; v1.3 withdraws their interpretation
+(Sec. III D of the letter, which replaces the "Sector dependence"
+subsection and the "Correction to v1.0" paragraph named above).
+
 Reference convention: lgi_fibonacci.py (Fibonacci F-matrix,
 R_1 = exp(-4 pi i /5), R_tau = exp(+3 pi i /5)).
 """
+import os
 import numpy as np
 import json
+
+# Result files are resolved relative to this script, not to the current
+# working directory: a reviewer who runs the script from elsewhere would
+# otherwise compare the deposited file against itself.
+_HIER = os.path.dirname(os.path.abspath(__file__))
+
 
 np.random.seed(20260525)
 
@@ -259,6 +272,6 @@ out = dict(
         mean_pure_minus_mixed=float(mean_pure - K3_mixed),
     ),
 )
-with open('lgi_period_and_purestate_results.json', 'w') as f:
+with open(os.path.join(_HIER, 'lgi_period_and_purestate_results.json'), 'w') as f:
     json.dump(out, f, indent=2)
 print("\n-> lgi_period_and_purestate_results.json written")

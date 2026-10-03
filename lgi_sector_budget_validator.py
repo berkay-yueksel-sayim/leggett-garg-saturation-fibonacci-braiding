@@ -22,8 +22,15 @@ code at delta = 0, L = 24, where the deposited random search
 
 Deterministic: fixed seed below.
 """
+import os
 import numpy as np
 import json
+
+# Result files are resolved relative to this script, not to the current
+# working directory: a reviewer who runs the script from elsewhere would
+# otherwise compare the deposited file against itself.
+_HIER = os.path.dirname(os.path.abspath(__file__))
+
 
 SEED = 20260723
 NSAMP = 400_000
@@ -75,7 +82,7 @@ def main():
 
     # deposited L <= 9 exhaustive envelope value at this grid point,
     # read from the deposited period scan for reference
-    scan = json.load(open('lgi_period_and_purestate_results.json'))["period_scan"]
+    scan = json.load(open(os.path.join(_HIER, 'lgi_period_and_purestate_results.json')))["period_scan"]
     i = int(np.argmin(np.abs(np.array(scan["delta_over_pi"]) - DELTA_OVER_PI)))
     env9 = scan["K3"][i]
     print(f"  deposited L<=9 envelope at this sector: K3 = {env9:.6f}")
@@ -86,7 +93,7 @@ def main():
     # its series maximum; a fresh seed must land in the same 1.498-1.500
     # class (maxima of 400,000 draws scatter at the 1e-3 level).
     ctrl = best_K3_random(0.0, 24, NSAMP, SEED)
-    rc = json.load(open('lgi_results.json'))["random_convergence"]
+    rc = json.load(open(os.path.join(_HIER, 'lgi_results.json')))["random_convergence"]
     dep24, dep_max = rc["24"], max(rc.values())
     ctrl_ok = bool(abs(ctrl - dep_max) < 2e-3 or abs(ctrl - dep24) < 2e-3)
     print(f"  positive control (delta=0, L=24): {ctrl:.6f} vs deposited "
@@ -105,7 +112,7 @@ def main():
                               deposited_series_max=dep_max,
                               class_match=ctrl_ok),
     )
-    with open('lgi_sector_budget_validator.json', 'w') as f:
+    with open(os.path.join(_HIER, 'lgi_sector_budget_validator.json'), 'w') as f:
         json.dump(out, f, indent=2)
     print("-> lgi_sector_budget_validator.json written")
 

@@ -1,13 +1,13 @@
 # LGI Letter v1.2 — Zenodo Build
 
-**Title:** Leggett--Garg saturation and structural signatures in Fibonacci-anyon braiding
-**Author:** Berkay Yuksel Sayim
+**Title:** Leggett–Garg K₃ Values Above 1 in Fibonacci-Anyon Braiding: 99.998 % of the Lüders Bound, and Exactly 1 for Ising Braiding
+**Author:** Berkay Yüksel Sayim
 **ORCID:** [0009-0004-4993-7352](https://orcid.org/0009-0004-4993-7352)
 **Affiliation:** Independent Research, Germany
 **Version:** 1.2
 **Date:** 2026-07-23
 **Resource type:** Preprint
-**License:** [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+**License:** paper, figures, and data — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), see `LICENSE`; source code (`*.py`) — [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), see `LICENSE-CODE`
 
 ## v1.2 changes (this release)
 
@@ -192,23 +192,19 @@ representation on the two-dimensional fusion space of three $\tau$
 anyons. Exhaustive enumeration over all $4^L$ braid words up to
 $L = 11$ and random sampling to $L = 40$ show that $K_3$ saturates
 the Lüders bound $3/2$ to $99.998\%$, with the first violation
-already at $L = 3$. Three structural signatures accompany the
-saturation. First, replacing Fibonacci by Ising generators on the
+already at $L = 3$. Two structural signatures accompany the saturation.
+First, replacing Fibonacci by Ising generators on the
 same 2D fusion space gives $K_3 = 1$ exactly for every $L \leq 11$ in the
 exhaustive search and every random word tested at even $L \in \{12, 14,
-\ldots, 40\}$, a sharp split mirroring the Clarke–Sau–Das-Sarma no-Bell-violation
-result for Ising braiding in the spatial CHSH setting. Second, the
-sector phase $\delta$ tunes a singular point $\delta = 3\pi/5$ at
+\ldots, 40\}$, a sharp split mirroring the Howard–Vala no-Bell-violation
+result for Ising braiding in the spatial CHSH setting. Second, an
+algebraic phase-deformation parameter $\delta$ tunes a singular point
+$\delta = 3\pi/5$ at
 which the generator $\sigma_1$ collapses to a scalar to machine
-precision and braiding becomes impossible. Third, the Fourier
-spectrum of the envelope $K_{3,\max}(\delta)$ is dominated by the
-$k=3$ harmonic (period $2\pi/3$); individual fixed-word traces
-$K_3(\delta;\,w)$ are generically only $2\pi$-periodic, and the
-envelope's $2\pi/3$ period arises from optimal-word
-reshuffling across the sweep. $K_3$ at
-the optimal $L=11$ word is initial-state independent. To our
-knowledge this is the first Leggett–Garg test specifically for
-non-Abelian Fibonacci-anyon braiding.
+precision, so that every braid word reduces to a global phase. The
+Fourier-period analysis of the $\delta$ dependence reported in earlier
+versions of this letter is withdrawn. $K_3$ at
+the optimal $L=11$ word is initial-state independent.
 
 ---
 
@@ -216,8 +212,8 @@ non-Abelian Fibonacci-anyon braiding.
 
 | File | Role |
 |---|---|
-| `main_v1.2.tex` | LaTeX source (RevTeX 4-2, PRX style) |
-| `main_v1.2.pdf` | Compiled preprint |
+| `main_v1.3.tex` | LaTeX source (RevTeX 4-2, PRX style) |
+| `main_v1.3.pdf` | Compiled preprint |
 | `lgi_letter_figure.png` | Two-panel preprint figure |
 | `lgi_letter_figure.py` | Preprint-figure builder |
 | `lgi_fibonacci.py` | Main Fibonacci LGI computation |
@@ -228,11 +224,16 @@ non-Abelian Fibonacci-anyon braiding.
 | `lgi_period_and_purestate_results.json` | period and pure-state raw results |
 | `k3_reanchor.py` | Independent $L=11$ argmax-word re-derivation (2 routes) |
 | `k3_reanchor.json` | `k3_reanchor.py` output (both routes, tie count, archive cross-check) |
-| `scalar_collapse_reanchor.py` | Re-anchor of the Sec. IV.B scalar-collapse value at $\delta_\star = 3\pi/5$ |
+| `scalar_collapse_reanchor.py` | Re-anchor of the Sec. III.C scalar-collapse value at $\delta_\star = 3\pi/5$ |
 | `scalar_collapse_reanchor.json` | `scalar_collapse_reanchor.py` output (negative control, algebraic identity, collapse deviation) |
-| `lgi_sector_budget_validator.py` | Seeded random-search validation of the braid-budget statement at the weakest nonsingular sector ($\delta/\pi = 0.6083$) |
+| `lgi_sector_budget_validator.py` | Seeded random-search validation of the braid-budget statement at the weakest nonsingular grid point ($\delta/\pi = 0.6083$) |
 | `lgi_sector_budget_validator.json` | `lgi_sector_budget_validator.py` output (best $K_3$ at $L=12/24$, positive control at $\delta=0$) |
-| `LICENSE` | CC BY 4.0 |
+| `lgi_envelope_word_audit.py` | Exhaustive audit of the words that carry the envelope $K_{3,\max}(\delta)$: coverage, Fourier spectra and periods of their own curves |
+| `lgi_envelope_word_audit_results.json` | `lgi_envelope_word_audit.py` output (positive control against the deposited envelope, coverage, harmonics, periods, random sample) |
+| `lgi_braid_relation_check.py` | Braid relation and mirror symmetry of the deformed generators (Secs. II B, III D) |
+| `lgi_braid_relation_check_results.json` | `lgi_braid_relation_check.py` output (grid, fine scan, scalar and conjugate points, envelope and word-level mirror symmetry) |
+| `LICENSE` | CC BY 4.0 — paper, figures, data |
+| `LICENSE-CODE` | Apache License 2.0 — source code (`*.py`) |
 | `README.md` | This file |
 
 ## Reproduction
@@ -240,11 +241,15 @@ non-Abelian Fibonacci-anyon braiding.
 Deterministic. NumPy and Matplotlib only.
 
 ```bash
-python lgi_fibonacci.py              # Fibonacci main, seed 20260524
-python lgi_ising.py                  # Ising, seed 20260525
-python lgi_period_and_purestate.py   # period + pure-state, seed 20260525
-python lgi_letter_figure.py          # preprint figure
-python lgi_sector_budget_validator.py  # sector budget validator, seed 20260723
+python lgi_fibonacci.py              # Fibonacci main, seed 20260524 (~2 min)
+python lgi_ising.py                  # Ising, seed 20260525 (~2 min)
+python lgi_period_and_purestate.py   # period + pure-state, seed 20260525 (~5.5 min)
+python lgi_letter_figure.py          # preprint figure (~4 s)
+python lgi_sector_budget_validator.py  # sector budget validator, seed 20260723 (~9 s)
+python k3_reanchor.py                # L=11 argmax-word re-derivation (~23 s)
+python scalar_collapse_reanchor.py   # scalar-collapse re-anchor (~1 s)
+python lgi_envelope_word_audit.py    # envelope word audit, seed 20260928 (~5.7 min)
+python lgi_braid_relation_check.py   # braid relation + mirror symmetry, no random numbers (~1 s)
 ```
 
 `lgi_fibonacci.py` and `lgi_ising.py` open with sanity checks (unitarity,
@@ -254,6 +259,12 @@ precision; if they do not, the generator conventions have been altered.
 control for its Fourier fit (`k_ctrl == 6`) but not the three checks
 above; `lgi_letter_figure.py` only loads the three `*_results.json`
 files and plots them, with no numerical checks of its own.
+The times in the comments are wall-clock times from one run each on a single
+desktop machine (Python 3.12.10, NumPy 2.4.3); each run reproduced its
+deposited output file byte for byte. The two stability runs in
+`lgi_period_and_purestate.py` ($L_{\max} = 7$ and $8$, $n_\delta = 120$) take
+the maximum over all words with $|w| \leq L_{\max}$, i.e. 21,844 and 87,380
+words.
 
 ## Key numerical claims (independently verifiable from the JSON files)
 
@@ -263,8 +274,13 @@ files and plots them, with no numerical checks of its own.
 | Fibonacci $K_3^{\max}$ (random, $L \geq 22$) | 1.499964 | `lgi_results.json` → `random_convergence` |
 | First Fibonacci LGI violation | $L=3$, $K_3=1.292$ | `lgi_results.json` → `exhaustive_delta0.3` |
 | Ising $K_3^{\max}$ at $\delta=0$ over $L=1\ldots 40$ | 1.000000 (exact) | `lgi_ising_results.json` |
-| Ising $K_3^{\max}$ over deformed sector $\delta$ | 1.500 at $\delta/\pi \approx 1.167$ | `lgi_ising_results.json` → `sector_sweep` |
-| Envelope $K_{3,\max}(\delta)$ dominant Fourier harmonic (corrected) | $k=3$ (period $2\pi/3$); fixed-word $K_3(\delta;\,w)$ generically only $2\pi$-periodic | `lgi_period_and_purestate_results.json` → `period_scan` |
+| Ising $K_3^{\max}$ over deformed $\delta$ | 1.500 at $\delta/\pi \approx 1.167$ | `lgi_ising_results.json` → `sector_sweep` |
+| Envelope $K_{3,\max}(\delta)$ not $2\pi/3$-periodic | $K_{3,\max} = 1$ only at $\delta/\pi = 0.6$; $1.2047$ at $\delta/\pi = 0.6 + 2/3$ | `lgi_period_and_purestate_results.json` → `period_scan.K3[72]`, `period_scan.K3[152]` |
+| No single word attains the envelope at every grid point | best word: 10 of the 239 nonsingular points | `lgi_envelope_word_audit_results.json` → `a_single_word_everywhere.best_coverage_nondegenerate` |
+| Envelope words with $k=3$ as the strongest harmonic of their own curve | 4,420 of 19,362 | `lgi_envelope_word_audit_results.json` → `b_c.W_star_nondegenerate` |
+| Fixed-word curves $K_3(\delta;\,w)$ with a period shorter than $2\pi$ (random sample of 1000 words) | 42 of 924 nonconstant (76 constant, 882 $2\pi$-periodic) | `lgi_envelope_word_audit_results.json` → `d_sample` |
+| Braid relation $\sigma_1\sigma_2\sigma_1 = \sigma_2\sigma_1\sigma_2$ | exact only at $\delta/\pi = 0, 0.6, 1.2$; elsewhere $\geq 0.0291$ (Frobenius), also up to a global phase | `lgi_braid_relation_check_results.json` → `grid`, `fine_scan` |
+| Mirror symmetry $K_{3,\max}(\delta) = K_{3,\max}(6\pi/5 - \delta)$ | $6.7 \times 10^{-15}$ about both axes ($3\pi/5$, $8\pi/5$); wrong axis $0.4996$ | `lgi_braid_relation_check_results.json` → `envelope_mirror` |
 | Pure-state $K_3$ at $L=11$ optimum (9 states) | 1.499762 ± 0 | `lgi_period_and_purestate_results.json` → `pure_state_check` |
 | Scalar-collapse deviation at $\delta_\star = 3\pi/5$ | $3.1 \times 10^{-16}$ | `scalar_collapse_reanchor.json` → `collapse_deviation` |
 | Sanity checks (unitarity, Yang–Baxter, $(\sigma_1\sigma_2)^3$ scalar) | $\leq 6 \times 10^{-16}$ | `lgi_results.json` and `lgi_ising_results.json` → `sanity`; `lgi_period_and_purestate_results.json` carries no `sanity` field (see Reproduction section) |
