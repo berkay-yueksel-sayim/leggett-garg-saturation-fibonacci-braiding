@@ -7,7 +7,9 @@
 **Version:** 1.2
 **Date:** 2026-07-23
 **Resource type:** Preprint
-**License:** paper, figures, and data — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), see `LICENSE`; source code (`*.py`) — [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0), see `LICENSE-CODE`
+**License:** paper, figures, and data — [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), see `LICENSE`; source code (`*.py`) — [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0), see `LICENSE-CODE`, `NOTICE` and `IMPORTANT.md`. All versions before 1.3 were released under earlier licence terms and have been withdrawn.
+
+> **Important — licensing:** paper, figures and data under CC BY 4.0; source code under the Apache License, Version 2.0. Earlier versions (before 1.3) have been withdrawn. Please read [IMPORTANT.md](IMPORTANT.md).
 
 ## v1.2 changes (this release)
 
@@ -233,7 +235,7 @@ the optimal $L=11$ word is initial-state independent.
 | `lgi_braid_relation_check.py` | Braid relation and mirror symmetry of the deformed generators (Secs. II B, III D) |
 | `lgi_braid_relation_check_results.json` | `lgi_braid_relation_check.py` output (grid, fine scan, scalar and conjugate points, envelope and word-level mirror symmetry) |
 | `LICENSE` | CC BY 4.0 — paper, figures, data |
-| `LICENSE-CODE` | Apache License 2.0 — source code (`*.py`) |
+| `LICENSE-CODE` | Apache License, Version 2.0 — source code (`*.py`) |
 | `README.md` | This file |
 
 ## Reproduction
